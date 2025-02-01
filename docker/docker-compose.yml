@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  # Service pour l'application Next.js en mode développement
+  app-dev:
+    build:
+      context: ..  # Le contexte est le dossier parent (FAC-DASHBOARD)
+      dockerfile: ./docker/Dockerfile
+      target: dev  # Utiliser l'étape "dev" du Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://user:password@db:5432/factura
+    depends_on:
+      - db
+    volumes:
+      - ..:/app  # Monter le dossier parent dans /app
+      - /app/node_modules
+    command: npm run dev  # Lancer en mode développement
+
+  # Service pour PostgreSQL
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: factura
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

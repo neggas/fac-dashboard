@@ -11,7 +11,7 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=development
-      - DATABASE_URL=postgresql://user:password@db:5432/factura
+      - DATABASE_URL=postgresql://postgres:root@db:5432/factura
     depends_on:
       - db
     volumes:
@@ -23,8 +23,8 @@ services:
   db:
     image: postgres:15
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
       POSTGRES_DB: factura
     ports:
       - "5432:5432"

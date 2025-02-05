@@ -1,7 +1,6 @@
 "use client";
 
 import { Input, InputProps, TextProps, Field } from "@chakra-ui/react";
-// import { Field } from "@/components/ui/field";
 import { InputHTMLAttributes, ReactNode } from "react";
 
 type InputDumbProps = InputHTMLAttributes<HTMLInputElement> &

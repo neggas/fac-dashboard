@@ -7,6 +7,8 @@ import {
 } from "@chakra-ui/react";
 
 import { colors } from "./foundations/colors";
+import { globalCss } from "./foundations/globalcss";
+import typography from "./foundations/typography";
 
 const custumConfig = defineConfig({
   theme: {
@@ -15,8 +17,11 @@ const custumConfig = defineConfig({
       fonts: {
         body: { value: "'Roboto',sans-serif" },
       },
+      fontWeights: typography.fontWeights,
     },
+    textStyles: typography.textStyles,
   },
+  globalCss: globalCss,
 });
 
 const themeConfig = mergeConfigs(defaultConfig, custumConfig);

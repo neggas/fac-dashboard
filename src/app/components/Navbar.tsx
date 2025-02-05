@@ -4,10 +4,10 @@ import { navigationsLinks } from "@/config/navigations";
 import React from "react";
 
 interface NavbarProps {
-  userName: string;
+  username: string;
 }
 
-const Navbar = async ({ userName }: NavbarProps) => {
+const Navbar = async ({ username }: NavbarProps) => {
   return (
     <Box className="navbar" w="300px" h="full" borderRight="1px solid #E4E4E7">
       <Flex
@@ -21,7 +21,7 @@ const Navbar = async ({ userName }: NavbarProps) => {
       </Flex>
 
       <Flex pl="10px" pr="16px" pt="16px" pb="10px" flexDir="column">
-        <LoggedUser name={userName} />
+        <LoggedUser name={username} />
 
         <Flex w="full" gap="20px" mt="24px" flexDir="column">
           {navigationsLinks.map((link, index) => (

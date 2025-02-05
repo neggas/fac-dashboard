@@ -1,12 +1,9 @@
-version: "3.8"
-
 services:
   # Service pour l'application Next.js en mode développement
   app-dev:
     build:
       context: ..  # Le contexte est le dossier parent (FAC-DASHBOARD)
       dockerfile: ./docker/Dockerfile
-      target: dev  # Utiliser l'étape "dev" du Dockerfile
     ports:
       - "3000:3000"
     environment:
@@ -16,8 +13,7 @@ services:
       - db
     volumes:
       - ..:/app  # Monter le dossier parent dans /app
-      - /app/node_modules
-    command: npm run dev  # Lancer en mode développement
+    entrypoint: ["yarn", "run", "dev"]  # Lancer en mode développement
 
   # Service pour PostgreSQL
   db:

@@ -1,0 +1,36 @@
+import { Box, Flex, Text } from "@chakra-ui/react";
+import LoggedUser from "./LoggedUser";
+import { navigationsLinks } from "@/config/navigations";
+import React from "react";
+
+interface NavbarProps {
+  userName: string;
+}
+
+const Navbar = async ({ userName }: NavbarProps) => {
+  return (
+    <Box className="navbar" w="300px" h="full" borderRight="1px solid #E4E4E7">
+      <Flex
+        h="70px"
+        justify="center"
+        align="center"
+        borderBottom="1px solid #E4E4E7">
+        <Text color="black" textStyle="heading-lg">
+          FACTURA
+        </Text>
+      </Flex>
+
+      <Flex pl="10px" pr="16px" pt="16px" pb="10px" flexDir="column">
+        <LoggedUser name={userName} />
+
+        <Flex w="full" gap="20px" mt="24px" flexDir="column">
+          {navigationsLinks.map((link, index) => (
+            <React.Fragment key={index}>{link.component}</React.Fragment>
+          ))}
+        </Flex>
+      </Flex>
+    </Box>
+  );
+};
+
+export default Navbar;

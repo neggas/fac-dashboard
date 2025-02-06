@@ -8,12 +8,14 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "seed": "tsx script/seed.ts"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.7.0",
     "@emotion/react": "^11.14.0",
-    "bcrypt": "^5.1.1",
+    "@types/bcryptjs": "^2.4.6",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.39.1",
     "formik": "^2.4.6",
@@ -38,7 +40,6 @@
     "@storybook/nextjs": "^8.5.3",
     "@storybook/react": "^8.5.3",
     "@storybook/test": "^8.5.3",
-    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/pg": "^8.11.11",
     "@types/react": "^19",

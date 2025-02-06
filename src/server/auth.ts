@@ -1,30 +1,15 @@
-import NextAuth, { User } from "next-auth";
+import { getServerSession, NextAuthOptions, User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { loginSchema } from "@/app/lib/form-validation";
-import bcrypt from "bcrypt";
-import { getUserFromDb } from "@/services/getUser";
+import { login } from "@/app/actions/auth/signin";
+import { LoginFormType } from "@/app/types";
 import { AdapterUser } from "next-auth/adapters";
 
-const errors = {
-  username: "",
-  password: "",
-};
-
-export const {
-  handlers: { GET, POST },
-  signIn,
-  signOut,
-  auth,
-} = NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      name: "Connexion",
+      name: "Credentials",
       credentials: {
-        username: {
-          label: "Username",
-          type: "text",
-          placeholder: "Username",
-        },
+        username: { label: "Username", type: "text", placeholder: "Username" },
         password: {
           label: "Password",
           type: "password",
@@ -33,22 +18,18 @@ export const {
       },
       async authorize(credentials) {
         try {
-          const validateData = await loginSchema.validate(credentials);
-          const user = await getUserFromDb(validateData.username);
+          const response = await login(credentials as LoginFormType);
 
-          if (!user) {
-            errors.username = "This username is not registered";
-          }
-          const isPasswordCorrect = await bcrypt.compare(
-            validateData.password,
-            user.password
-          );
-          if (!isPasswordCorrect) {
-            errors.password = "Invalid password";
-          }
-          if (errors.username || errors.password) {
+          if (!response.success) {
             return null;
           }
+
+          const user = response.value;
+
+          if (!user) {
+            return null;
+          }
+
           return {
             id: user.id,
             name: user.name,
@@ -61,7 +42,6 @@ export const {
       },
     }),
   ],
-
   session: {
     strategy: "jwt", // Utilisation de JWT pour les sessions
   },
@@ -93,4 +73,6 @@ export const {
       return session;
     },
   },
-});
+};
+
+export const getServerAuthSession = () => getServerSession(authOptions);

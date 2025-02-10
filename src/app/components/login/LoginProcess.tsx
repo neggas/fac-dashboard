@@ -7,8 +7,8 @@ import InputField from "@/config/themes/components/inputs/InputField";
 import { LoginFormType } from "@/app/types";
 import { loginSchema } from "@/app/lib/form-validation";
 import { useRouter } from "next/navigation";
-import { ROUTES } from "@/app/lib/routes";
 import { signIn } from "next-auth/react";
+import { ROUTES } from "@/config/constants";
 
 const loginInitialValue = {
   username: "",
@@ -24,11 +24,11 @@ export default function LoginProcess() {
         username: values.username,
         password: values.password,
         redirect: false,
-        callbackUrl: "/auth/login",
+        callbackUrl: ROUTES.LOGIN_PAGE,
       });
 
       if (response?.ok) {
-        router.push(ROUTES.DASHBOARD);
+        router.push(ROUTES.DASHBOARD_PAGE);
       }
     } catch (error) {
       console.log(error);

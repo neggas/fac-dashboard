@@ -3,7 +3,7 @@ import Navbar from "@/app/components/Navbar";
 import LayoutHeader from "@/app/components/DashboardLayoutHeader";
 import Firewall from "../components/Firewall";
 
-const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Firewall>
       <Flex w="full" h="full">
@@ -13,7 +13,7 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
           <Box
             className="layout-content-body"
             w="full"
-            h="full"
+            h="auto"
             px="32px"
             py="32px">
             {children}

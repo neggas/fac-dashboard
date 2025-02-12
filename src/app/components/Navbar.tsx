@@ -9,7 +9,7 @@ interface NavbarProps {
 
 const Navbar = async ({ username }: NavbarProps) => {
   return (
-    <Box className="navbar" w="300px" h="full" borderRight="1px solid #E4E4E7">
+    <Box className="navbar" w="300px" h="dvh" borderRight="1px solid #E4E4E7">
       <Flex
         h="70px"
         justify="center"

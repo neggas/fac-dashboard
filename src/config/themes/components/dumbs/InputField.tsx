@@ -37,6 +37,7 @@ const InputFieldDumb = ({
           _placeholder={{ color: "text.muted" }}
           fontSize="20px"
           height="45px"
+          px="8px"
         />
         {hasError && (
           <Field.HelperText color="red.500" textStyle="md">

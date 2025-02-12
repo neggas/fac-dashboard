@@ -65,7 +65,7 @@ const AutocompleteField = ({
 
   return (
     <Field.Root w="full">
-      <Box w="full">
+      <Box w="full" minH="45px">
         {label && (
           <Field.Label htmlFor={props.name} textStyle="md">
             {label}

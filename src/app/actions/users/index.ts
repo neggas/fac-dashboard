@@ -11,6 +11,7 @@ import { users } from "@/db/schema/user.schema";
 import { getServerAuthSession } from "@/server/auth";
 
 import bcrypt from "bcryptjs";
+import { eq, not } from "drizzle-orm";
 
 export const saveNewUser = createServerAction(async (user: UserForm) => {
   try {
@@ -32,6 +33,22 @@ export const saveNewUser = createServerAction(async (user: UserForm) => {
       .returning();
   } catch (error: unknown) {
     console.log(error);
+    throw new ServerActionError("Une erreur est apparue");
+  }
+});
+
+export const getUsers = createServerAction(async () => {
+  const session = (await getServerAuthSession()) as UserSession;
+  if (!session || session.user.role !== RoleEnum.admin) {
+    throw new ServerActionError("Unhotorized");
+  }
+
+  try {
+    return db
+      .select()
+      .from(users)
+      .where(not(eq(users.id, session!.user!.id as string)));
+  } catch {
     throw new ServerActionError("Une erreur est apparue");
   }
 });

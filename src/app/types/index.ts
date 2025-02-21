@@ -30,3 +30,10 @@ export interface UserSession extends Session {
     role: Role;
   };
 }
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: Role;
+}

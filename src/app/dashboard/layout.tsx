@@ -6,16 +6,11 @@ import Firewall from "../components/Firewall";
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Firewall>
-      <Flex w="full" h="full">
+      <Flex w="dvw" h="dvh">
         <Navbar username="Arsène" />
-        <Box w="calc(100% - 300px)" h="full" className="layout-content">
+        <Box w="calc(100% - 300px)" h="auto" className="layout-content">
           <LayoutHeader username="Arsène" />
-          <Box
-            className="layout-content-body"
-            w="full"
-            h="auto"
-            px="32px"
-            py="32px">
+          <Box className="layout-content-body" w="full" px="32px">
             {children}
           </Box>
         </Box>

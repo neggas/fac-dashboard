@@ -32,8 +32,13 @@ export const DataTable = <T,>({ data, columns }: DataTableProps<T>) => {
   });
 
   return (
-    <Box borderWidth="1px" rounded="lg" maxHeight="400px" overflowY="auto">
-      <Flex w="full" mt="20px" py="10px" justifyContent="flex-end" px="2">
+    <Box
+      borderWidth="1px"
+      rounded="lg"
+      maxHeight="400px"
+      overflowY="auto"
+      px="20px">
+      <Flex w="full" mt="20px" py="10px" justifyContent="flex-end">
         <InputFieldDumb
           name="search"
           placeholder="Rechercher..."
@@ -42,7 +47,7 @@ export const DataTable = <T,>({ data, columns }: DataTableProps<T>) => {
           onChange={(e) => setGlobalFilter(e.target.value)}
         />
       </Flex>
-      <Table.Root size="lg" rounded="lg" variant="outline">
+      <Table.Root size="lg" rounded="lg" variant="outline" showColumnBorder>
         <Table.Header>
           {table.getHeaderGroups().map((headerGroup) => (
             <Table.Row key={headerGroup.id}>

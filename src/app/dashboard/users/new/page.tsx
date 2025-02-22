@@ -32,7 +32,7 @@ const AddUser = () => {
         return;
       }
 
-      router.push(ROUTES.DASHBOARD_PAGE);
+      router.push(ROUTES.USERS_PAGE);
     } catch (error: unknown) {
       console.log(error);
     }

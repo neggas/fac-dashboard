@@ -32,12 +32,7 @@ export const DataTable = <T,>({ data, columns }: DataTableProps<T>) => {
   });
 
   return (
-    <Box
-      borderWidth="1px"
-      rounded="lg"
-      maxHeight="400px"
-      overflowY="auto"
-      px="20px">
+    <Box borderWidth="1px" rounded="lg" px="20px">
       <Flex w="full" mt="20px" py="10px" justifyContent="flex-end">
         <InputFieldDumb
           name="search"
@@ -47,7 +42,13 @@ export const DataTable = <T,>({ data, columns }: DataTableProps<T>) => {
           onChange={(e) => setGlobalFilter(e.target.value)}
         />
       </Flex>
-      <Table.Root size="lg" rounded="lg" variant="outline" showColumnBorder>
+      <Table.Root
+        size="lg"
+        rounded="lg"
+        variant="outline"
+        showColumnBorder
+        maxH="400px"
+        overflowY="auto">
         <Table.Header>
           {table.getHeaderGroups().map((headerGroup) => (
             <Table.Row key={headerGroup.id}>
